@@ -1,0 +1,153 @@
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <style>
+            #sidebar {
+                overflow: hidden;
+                z-index: 2;
+            }
+            #sidebar .list-group {
+                min-width: 200px;
+                background-color: darkblue;
+                min-height: 100vh;
+            }
+            #sidebar i {
+                margin-right: 6px;
+            }
+
+            #sidebar .list-group-item {
+                border-radius: 0;
+                background-color: darkblue;
+                color: #ccc;
+                border-left: 0;
+                border-right: 0;
+                border-color: darkblue;
+                white-space: nowrap;
+            }
+
+            /* highlight active menu */
+            #sidebar .list-group-item:not(.collapsed) {
+                background-color: darkslateblue;
+            }
+
+            /* closed state */
+            #sidebar .list-group .list-group-item[aria-expanded="false"]::after {
+            content: " \f0d7";
+            font-family: FontAwesome;
+            display: inline;
+            text-align: right;
+            padding-left: 5px;
+            }
+
+            /* open state */
+            #sidebar .list-group .list-group-item[aria-expanded="true"] {
+            background-color:white;
+            }
+            #sidebar .list-group .list-group-item[aria-expanded="true"]::after {
+            content: " \f0da";
+            font-family: FontAwesome;
+            display: inline;
+            text-align: right;
+            padding-left: 5px;
+            }
+
+            @media (max-width:768px) {
+                #sidebar {
+                    min-width: 35px;
+                    max-width: 40px;
+                    overflow-y: auto;
+                    overflow-x: visible;
+                    transition: all 0.25s ease;
+                    transform: translateX(-45px);
+                    position: fixed;
+                }
+                
+                #sidebar.show {
+                    transform: translateX(0);
+                }
+
+                #sidebar::-webkit-scrollbar{ width: 0px; }
+                
+                #sidebar, #sidebar .list-group {
+                    min-width: 1px;
+                    overflow: visible;
+                }
+                /* overlay sub levels on small screens */
+                #sidebar .list-group .collapse.show, #sidebar .list-group .collapsing {
+                    position: relative;
+                    z-index: 1;
+                    width: 190px;
+                    top: 0;
+                }
+                #sidebar .list-group > .list-group-item {
+                    text-align: center;
+                    padding: .75rem .5rem;
+                }
+                /* hide caret icons of top level when collapsed */
+                #sidebar .list-group > .list-group-item[aria-expanded="true"]::after,
+                #sidebar .list-group > .list-group-item[aria-expanded="false"]::after {
+                    display:none;
+                }
+            }
+
+            .collapse.show {
+            visibility: visible;
+            }
+            .collapsing {
+            visibility: visible;
+            height: 0;
+            -webkit-transition-property: height, visibility;
+            transition-property: height, visibility;
+            -webkit-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+            }
+            .collapsing.width {
+            -webkit-transition-property: width, visibility;
+            transition-property: width, visibility;
+            width: 0;
+            height: 100%;
+            -webkit-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row d-flex d-md-block flex-nowrap wrapper">
+                <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
+                    <div class="list-group border-0 text-center text-md-left">
+                        <div class="row">
+                            <nav class="col-md-2 sidebar d-flex flex-column align-items-start">
+                                <div class="text-center w-100">
+                                    <img src="logo_profil.jpg" class="rounded-circle mb-3" width="50">
+                                    <p>Admin</p>
+                                    <p>admin@gmail.com</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Helperlog</div>
+                                    
+                                <div class="row">
+                                    <div class="col">Helperfind</div>
+                                <a href="#" class="mt-auto text-danger">Log Out</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <main class="col-md-9 float-left col px-5 pl-md-2 pt-2 main">
+                    <a href="#" data-target="#sidebar" data-toggle="collapse"><i class="text-dark fa fa-navicon fa-lg py-2 p-1"></i></a>
+                    <h3>Detail PRT</h3>
+                    <div class="row">
+
+                    </div>
+                    <hr>
+                </main>
+            </div>
+        </div>
+    </body>
+</html>
